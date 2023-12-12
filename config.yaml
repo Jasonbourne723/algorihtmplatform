@@ -4,9 +4,9 @@ app:
   signalr_port: 81
 database:
   driver: 'mysql'
-  host: '218.60.119.34'
+  host: '192.168.201.2'
   port: 3306
-  database: 'mhc_dw_database_test'
+  database: 'database_test'
   username: 'superuser'
   password: 'NbARrZtv7ZhvWq'
   charset: 'utf8mb4'
@@ -17,14 +17,14 @@ database:
   log_filename: 'sql.log'
 jwt:
   secret: 'sdfsdfsrty45634kkhtrghtdgdfss345t678fs'
-  issuer: 'MHCloud'
-  audience: 'MHCloud'
+  issuer: 'sw'
+  audience: 'sw'
   expire_minutes: 43200
   clock_skew_minutes: 1440
 eos:
   region: 'beijing2'
-  endpoint: 'http://eos-beijing-2.cmecloud.cn'
+  endpoint: 'http://test.cn'
   buket_name: 'algorithm'
-  access_id: 'LZYMO19ZHCHJIYHWHWAB'
-  access_secret: 'BMtJLghtXUsqwIQAo887v2b6MDwHvZwnPBouPNYc'
+  access_id: ''
+  access_secret: ''
 
