@@ -1,0 +1,30 @@
+app:
+  env: 'dev'
+  port: 80
+  signalr_port: 81
+database:
+  driver: 'mysql'
+  host: '218.60.119.34'
+  port: 3306
+  database: 'mhc_dw_database_test'
+  username: 'superuser'
+  password: 'NbARrZtv7ZhvWq'
+  charset: 'utf8mb4'
+  max_idle_conns: 10
+  max_open_conns: 100
+  log_mode: 'info'
+  enable_file_log_writer: true
+  log_filename: 'sql.log'
+jwt:
+  secret: 'sdfsdfsrty45634kkhtrghtdgdfss345t678fs'
+  issuer: 'MHCloud'
+  audience: 'MHCloud'
+  expire_minutes: 43200
+  clock_skew_minutes: 1440
+eos:
+  region: 'beijing2'
+  endpoint: 'http://eos-beijing-2.cmecloud.cn'
+  buket_name: 'algorithm'
+  access_id: 'LZYMO19ZHCHJIYHWHWAB'
+  access_secret: 'BMtJLghtXUsqwIQAo887v2b6MDwHvZwnPBouPNYc'
+

@@ -1,0 +1,42 @@
+stages:     
+  - build
+  - deploy
+
+apigateway_build:      
+  stage: build
+  tags: 
+    - common-runner
+  script:
+    - VERSION=`date -d today +"%Y%m%d%H%M"`
+    - echo "VERSION=$VERSION" > .version
+    - docker build -t 192.168.100.213:8083/algorithmplatform_go:$VERSION .
+    - docker push 192.168.100.213:8083/algorithmplatform_go:$VERSION
+  after_script:
+   # - docker rmi $(docker images | grep "none" | awk '{print $3}')
+  artifacts:
+    name: "$VERSION"
+    paths:
+      - .version  # 版本号传递到下一个job
+    expire_in: 1 days
+  only:
+    - main
+
+
+apigateway_deploy:
+  stage: deploy 
+  tags: 
+    - company 
+  script:
+    - if [ ! -f ./.version ];
+      then
+        echo "任务执行失败，请先执行build任务！";
+        exit 1;
+      fi
+    - source ./.version   
+  # 判断之前容器是否执行 
+    - if [[ -n $(docker ps -aq --filter name=algorithmplatform_go) ]]; then docker rm -f algorithmplatform_go; fi
+    - docker run -d --name algorithmplatform_go -p 10005:80 -p 10004:81  -e GO_ENV=produce 192.168.100.213:8083/algorithmplatform_go:$VERSION
+  only:
+    - main
+
+
